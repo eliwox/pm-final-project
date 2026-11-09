@@ -22,4 +22,4 @@ Quote (guessing): “I picked the plan with the lowest number of months because 
 Quote (fear): “I was scared to type the wrong number. What if they use it against me?” (N-06)
 Quote (calling): “A person can tell me if this is going to cost me more.” (N-04)
 Behavior in the data: “Why income is asked” is 16.2% of agent contacts and “what if I miss a payment” is 18.6%. Variable or shift earners miss payments at 22.5% versus 17.4% for fixed salary.
-- **Your journey map file name (e.g. journey-map.html):** _(not filled in)_
+- **Your journey map file name (e.g. journey-map.html):** competitive-and-journey.md
