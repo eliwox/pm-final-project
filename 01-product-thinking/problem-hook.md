@@ -1,53 +1,22 @@
-# Problem Hook & Value Proposition: [StreamLine / RouteLogic / your initiative]
+# Problem Hook & Value Proposition (Module 1)
 
-> **Module 1 · ★ Deliverable 1.** Repo file `01-product-thinking/problem-hook.md` — part of your submission.
-> Do the lab in the **Module 1 · Exercise 2 Guide** (linked from the Module 1 deck), then click **⬇ Download .md** — it saves as this exact file. Commit it here.
-> It becomes the **Problem, Value & Hypothesis** slide of your Module 6 final deck. (Your Module 1 · Exercise 1 discovery map lands in `strategic-map.md`.)
+## Responses
+- **Chosen path, which Riverty business-unit case are you using?:** BU Collection: A Fair Way Forward
+- **Strategic crisis, based on the brief, if the company does nothing for 12 months, what happens to its market position?:** If Riverty does nothing for 12 months, it will keep reporting a healthy-looking Self-Service Rate while the real economics erode: consumers like Mara keep abandoning a fragmented journey, agents like Daniel keep redoing checks, and plans that count as “resolved” at creation break later and drive re-contacts. Clients and purchased-portfolio economics suffer from flat recovery and poor visibility into where value leaks, while regulatory and reputational exposure grows around fairness and vulnerable consumers. The result is slow, hard-to-see decline: Riverty becomes costlier to serve and less trusted than rivals who build a fair, transparent, human-backed digital journey first. These are hypotheses drawn from a fictional brief, so plan survival rates, re-contact rates and funnel drop-off would be the first things to check.
+- **Moment of misery, what is the user likely doing outside the product (Google, spreadsheets, a competitor) because your tool isn’t serving them?:** Because the journey doesn’t answer Mara’s core questions (is this affordable, what if I miss a payment, will this make things worse), she is likely Googling for reassurance, building her own budget in a notes app or spreadsheet, asking friends or debt advisers, and weighing alternatives like loans or borrowing from family. When she can’t find documents or sort out two claims, she gives up and calls an agent. Daniel works around the same gaps with personal notes, repeated questions, colleague messages and manual fixes, since the case summary is incomplete and the reasoning behind recommendations isn’t visible. The real competitor is often Google, a spreadsheet, or doing nothing, and none of it shows up in the portal’s analytics, so these are hypotheses to test through exit surveys, call-reason coding and short interviews.
+- **Problem hook, summarize the business risk and user pain into one urgent sentence.:** We must solve the risk that a rising Self-Service Rate masks failing plans, flat recovery and eroding client and portfolio value by addressing Mara’s struggle to find out whether an instalment plan is affordable and safe, which pushes her to abandon the portal, accept plans she will miss, or call Daniel, who must then redo the work.
+- **Value proposition, based on the initiative in your assigned Riverty case, what is the new value and why is it urgent to launch now?:** For consumers like Mara and agents like Daniel, we will deliver a digital instalment journey that helps people agree to an affordable, understandable plan they can keep, with a clear handoff to an agent when they need one, because a rising Self-Service Rate can mask plans that break and avoidable agent work, and every month without it adds missed plans, repeated agent checks and weaker client and portfolio recovery while the European digital rollout locks in fragmented journeys.
 
-## 1. Chosen scenario
+## Cold-read your own hook
+- **Is the business risk high enough to justify a new initiative, a high-stakes threat, or a minor inconvenience?:** Business risk: justified, but only conditionally.
+The hook claims a masked SSR, flat recovery and eroding client and portfolio value, yet the brief gives no volumes, costs or failure rates. A skeptical stakeholder would ask “how big, and how do you know?” The risk is high-stakes only if plan breakage and re-contact are material, and right now that is a hypothesis. It is also a long list of risks in one sentence, which dilutes the urgency. The sharpest and most defensible threat is the metric trap: leadership is steering by a number that counts a plan as resolved the moment it is created. That is a real, structural flaw, not an inconvenience. The hook would land harder if it led with that and put a number on it (for example, what share of plans break within 60 days).
+- **Is the moment of misery a systemic problem or just an edge case?:** Moment of misery: systemic, though the evidence is thin.
+The pattern is structural, not an edge case. The journey is fragmented by design across portal, letters, decision logic and agents, and any consumer who cannot pay in one go hits it. Mara’s uncertainty about affordability and consequences is a typical situation for this segment. Two things keep me cautious. First, Mara is one persona, and her variable shift-work income and two open claims may be the harder end of the segment, not the middle. Second, I have not seen abandonment data showing where people drop off. Verdict: systemic in structure, unproven in scale until the funnel data confirms it.
 
-**Path:** _StreamLine Spotlight (B2C) · RouteLogic Velocity (B2B) · my own initiative_
+the urgency holds on the metric flaw, wobbles on scale, and the value proposition needs rewriting to be specific. The fastest way to strengthen all three is to get two numbers: plan-survival rate and post-resolution re-contact rate.
+- **Does the value proposition actually remove the obstacle you identified, or is it a generic feature?:** Value proposition: partly generic, and that is the weak spot.
+The obstacle I identified is that Mara cannot tell whether a plan is affordable and safe, and that the success metric rewards plans that fail. A proposition that actually removes it would be sharper, for example:
 
-_One line on why you picked it._
+For consumers with variable income and multiple claims, we will let them see an affordable plan and what happens if they miss a payment before they commit, and measure success by plans kept, not plans created, because SSR currently rewards the wrong outcome.
 
-## 2. The strategic crisis
-
-_The big-picture business risk. If the company does nothing for 12 months, what happens to its market position?_
-
-> If we do nothing for 12 months, the company will…
-
-## 3. The moment of misery
-
-_The specific point where the product fails the user, forcing a manual workaround (Google, spreadsheets, group texts, a competitor)._
-
-> The user is currently forced to…
-
-## 4. Problem hook
-
-_One urgent sentence fusing the business risk and the user pain, your pitch for why this is the most important thing to work on right now._
-
-> We must solve [business risk] by addressing [user pain]…
-
-## 5. Value proposition
-
-_Who it's for, the new value, and why it's urgent to launch now._
-
-> For **[who]**, we will **[value]** because **[urgent why]**.
-
-## 6. Cold-read self-review
-
-_Read your hook back as a skeptical stakeholder. If you don't feel the urgency, that's your data._
-
-| Question | Your answer |
-|---|---|
-| Is the business risk high-stakes enough to justify a new initiative? | _____ |
-| Is the moment of misery systemic, or just an edge case? | _____ |
-| Does the value proposition actually remove the obstacle? | _____ |
-
-## 7. Finalized hypothesis _(complete in Module 3)_
-
-> Based on [qual + quant evidence], I believe that [solving X] for [persona] will result in [outcome], as measured by a [X%] change in [success metric]. I will protect [guardrail metric] and make a go/no-go decision after [decision window].
-
-## Link to full artifact
-
-_[link to your Problem Hook Builder export]_
+That version names the obstacle (affordability uncertainty and fear of consequences), the fix (transparency before commitment, with a human handoff when confidence is low), and the metric change that makes the urgency real.
