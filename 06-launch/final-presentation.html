@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Income explainer · Final Project · Riverty BU Collection</title>
+<style>
+:root{
+  --bg:#07162C; --fg:#ffffff; --mut:#cbd5e1;
+  --or:#fb923c; --cy:#22d3ee; --tl:#34d399; --bl:#60a5fa; --vi:#a78bfa; --pk:#f472b6; --eb:#fdba74;
+  --bd:rgba(251,146,60,0.25); --card:rgba(255,255,255,0.045);
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-snap-type:y proximity;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15px;line-height:1.55}
+a{color:var(--cy)}
+#bar{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--or),var(--pk));z-index:50}
+.dots{position:fixed;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:40}
+.dots a{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--mut);display:block;opacity:.6;transition:all .2s}
+.dots a:hover{opacity:1}
+.dots a.on{background:var(--or);border-color:var(--or);opacity:1;transform:scale(1.35)}
+section{min-height:100vh;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(28px,5vh,56px) clamp(40px,6vw,96px)}
+.inner{max-width:1240px;width:100%;margin:0 auto}
+.eb{font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--eb);font-size:12px;margin:0 0 10px}
+h1{font-size:clamp(44px,7vw,96px);line-height:1.02;margin:0 0 22px;letter-spacing:-0.025em;font-weight:800}
+h1 span{color:var(--or)}
+h2{font-size:clamp(26px,3vw,40px);line-height:1.12;margin:0 0 20px;letter-spacing:-0.015em;font-weight:800}
+h3{font-size:15px;margin:0 0 8px;font-weight:700}
+p{margin:0 0 10px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:18px 20px}
+.hero{background:linear-gradient(135deg,rgba(251,146,60,.17),rgba(34,211,238,.06));box-shadow:0 14px 40px rgba(0,0,0,.4)}
+.lbl{font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em;font-size:11px;color:var(--eb);margin:0 0 8px;display:block}
+.mut{color:var(--mut)}
+.sm{font-size:13px;line-height:1.5}
+.xs{font-size:12px;line-height:1.45}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g21{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}
+.chip{font-family:var(--mono);font-size:12.5px;border:1px solid var(--bd);border-radius:999px;padding:7px 14px;background:rgba(255,255,255,.04)}
+.chip b{color:var(--eb);font-weight:600;margin-right:6px;text-transform:uppercase;letter-spacing:.1em;font-size:11px}
+.ph{border-style:dashed;color:var(--mut)}
+.foot{font-size:12px;color:var(--mut);margin-top:16px}
+/* cover */
+.cover .pitch{font-size:clamp(17px,1.7vw,24px);line-height:1.45;max-width:880px;color:var(--mut);margin-bottom:28px}
+.cover .pitch em{color:var(--fg);font-style:normal}
+/* callout */
+.callout{border-left:5px solid var(--cy);background:linear-gradient(135deg,rgba(34,211,238,.13),rgba(34,211,238,.03));border-radius:14px;padding:18px 22px}
+.callout .big{font-size:clamp(15px,1.45vw,19px);line-height:1.5;margin:0 0 12px}
+.stats{display:flex;flex-wrap:wrap;gap:10px}
+.stat{border:1px solid rgba(34,211,238,.35);border-radius:10px;padding:8px 12px;font-size:12.5px}
+.stat b{display:block;font-family:var(--mono);font-size:19px;color:var(--cy)}
+.hook{font-size:clamp(16px,1.5vw,20px);line-height:1.45}
+/* lists */
+ol.steps{margin:0;padding-left:20px}
+ol.steps li{margin-bottom:5px}
+.quote{border-left:3px solid var(--or);padding:2px 0 2px 12px;margin:0 0 10px;font-size:13.5px}
+.quote small{display:block;font-family:var(--mono);color:var(--eb);font-size:11px;margin-top:2px}
+/* journey */
+.journey{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:16px;position:relative}
+.step{border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:14px;background:rgba(255,255,255,.04);position:relative}
+.step .n{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+.step h4{margin:2px 0 6px;font-size:16px}
+.step.misery{border:2px solid var(--or);background:linear-gradient(160deg,rgba(251,146,60,.28),rgba(244,114,182,.1));box-shadow:0 0 0 4px rgba(251,146,60,.12),0 12px 32px rgba(251,146,60,.2)}
+.step.misery .n{color:#fdba74}
+.step.fix{border-color:rgba(52,211,153,.6);background:linear-gradient(160deg,rgba(52,211,153,.18),rgba(52,211,153,.04))}
+.step.fix .n{color:var(--tl)}
+.step:not(:last-child)::after{content:"→";position:absolute;right:-12px;top:50%;transform:translate(0,-50%);color:var(--mut);font-size:14px;z-index:2}
+/* roadmap */
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}
+.col h3{font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em;font-size:12px;margin:0 0 4px}
+.col .sub{font-size:12px;color:var(--mut);margin:0 0 10px}
+.col.now h3{color:var(--tl)} .col.next h3{color:var(--bl)} .col.later h3{color:var(--vi)}
+.rc{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.col.now .rc{border-top:3px solid var(--tl)} .col.next .rc{border-top:3px solid var(--bl)} .col.later .rc{border-top:3px solid var(--vi)}
+.rc-h{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;font-size:14px;margin-bottom:2px}
+.rc-h .id{font-family:var(--mono);color:var(--eb);margin-right:6px;font-size:12px}
+.bdg{flex:none;font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:6px;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.q-qw{background:rgba(52,211,153,.2);color:#6ee7b7}
+.q-mp{background:rgba(96,165,250,.2);color:#93c5fd}
+.q-fi{background:rgba(167,139,250,.2);color:#c4b5fd}
+.q-ts{background:rgba(244,114,182,.2);color:#f9a8d4}
+.ve{font-family:var(--mono);font-size:11px;color:var(--mut);margin-bottom:5px}
+.rc p{font-size:12px;line-height:1.45;color:var(--mut);margin:0}
+.cut{border-style:dashed;border-color:rgba(244,114,182,.5)}
+.cut .rc-h b{text-decoration:line-through;text-decoration-color:var(--pk)}
+.must li{margin-bottom:4px}
+.tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--or);color:var(--or);border-radius:6px;padding:3px 9px;margin-bottom:8px}
+/* validation */
+.metric{border:1px solid var(--bd);border-radius:14px;padding:12px 14px;background:var(--card)}
+.metric b{display:block;font-family:var(--mono);font-size:22px;color:var(--or);line-height:1.2}
+.metric span{font-size:12px;color:var(--mut)}
+.rules{display:grid;gap:7px}
+.rule{display:grid;grid-template-columns:104px 1fr;gap:10px;align-items:start;border-radius:10px;padding:8px 12px;font-size:12.5px;line-height:1.45;background:rgba(255,255,255,.04);border-left:4px solid var(--c)}
+.rule b{font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;font-size:11.5px;color:var(--c)}
+/* gtm */
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.pill{font-family:var(--mono);font-size:12px;border-radius:999px;padding:5px 12px;border:1px solid var(--c,var(--bd));color:var(--c,var(--fg));background:rgba(255,255,255,.04)}
+.pill b{color:var(--fg);font-weight:600}
+.tl{display:flex;gap:6px;margin-top:6px}
+.tl div{border-radius:10px;padding:8px 10px;font-size:11.5px;line-height:1.35;background:rgba(255,255,255,.05);border-top:3px solid var(--c)}
+.tl div b{display:block;font-family:var(--mono);font-size:10.5px;color:var(--c);text-transform:uppercase;letter-spacing:.08em}
+.bad{border-left:5px solid var(--pk);background:linear-gradient(135deg,rgba(244,114,182,.16),rgba(244,114,182,.04));border-radius:14px;padding:14px 18px}
+/* thanks */
+.submit{display:inline-block;font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em;font-size:14px;font-weight:700;color:#07162C;background:var(--or);border-radius:999px;padding:14px 28px;box-shadow:0 10px 30px rgba(251,146,60,.35)}
+@media (max-width:980px){
+  .g2,.g3,.g21,.cols{grid-template-columns:1fr}
+  .journey{grid-template-columns:1fr}
+  .step:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-14px;transform:translateX(-50%)}
+  .tl{flex-direction:column}
+  .rule{grid-template-columns:1fr}
+  section{padding-right:44px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<nav class="dots" id="dots" aria-label="Slides"></nav>
+
+<!-- COVER -->
+<section id="cover" data-title="Cover">
+  <div class="inner cover">
+    <p class="eb">Product School · Product Management Certification · Final Project</p>
+    <h1>Income <span>explainer</span></h1>
+    <p class="pitch">For consumers on shift or variable income, we explain <em>which income to enter, why it’s asked and how it’s kept</em>, right beside the field, so they can answer with confidence and set up a plan they can keep.</p>
+    <div class="chips">
+      <span class="chip"><b>Presented by</b>Elias Woxmark + Riverty Cohort 2</span>
+      <span class="chip"><b>Repo</b><a href="https://github.com/eliwox/pm-final-project">github.com/eliwox/pm-final-project</a></span>
+      <span class="chip"><b>Prototype</b><a href="https://github.com/eliwox/pm-final-project/blob/main/04-roadmap/prototype.html">04-roadmap/prototype.html</a></span>
+    </div>
+    <p class="foot">Riverty BU Collection · A Fair Way Forward. Sample data, illustrative, not Riverty research. All people, numbers and events are fictional.</p>
+  </div>
+</section>
+
+<!-- SLIDE 5 · STRATEGY -->
+<section id="s5" data-title="Slide 5 · Strategy">
+  <div class="inner">
+    <p class="eb">Slide 5 · Strategy</p>
+    <h2>The problem, the value and the hypothesis</h2>
+    <div class="grid g2" style="margin-bottom:16px">
+      <div class="card hero">
+        <span class="lbl">Problem statement hook</span>
+        <p class="hook">We must solve the risk that a rising Self-Service Rate masks failing plans, flat recovery and eroding client and portfolio value by addressing Mara’s struggle to find out whether an instalment plan is affordable and safe, which pushes her to abandon the portal, accept plans she will miss, or call Daniel, who must then redo the work.</p>
+      </div>
+      <div class="card hero">
+        <span class="lbl">Value proposition</span>
+        <p class="hook">The income explainer tells a consumer on shift or variable income which income to enter, why it’s asked and how her answer is used and kept, beside the field where she stalls today. It matters because variable and shift earners (2,862 starters a month) miss payments within 60 days at 22.5%, against 17.4% for fixed salary, and “why income is asked” is 16.2% of agent contacts.</p>
+      </div>
+    </div>
+    <div class="callout">
+      <span class="lbl" style="color:var(--cy)">Data-backed hypothesis</span>
+      <p class="big">I believe that the inline income explainer will result in fewer plans that break within 60 days, as measured by a 4-point reduction (22.5% to 18.5%) in the 60-day missed-payment rate for variable or shift agreements, with a read at about 4.7 months. We will protect agreement rate (baseline 41.6%) throughout the test.</p>
+      <div class="stats">
+        <div class="stat"><b>22.5% vs 17.4%</b>missed payments, variable or shift vs fixed salary</div>
+        <div class="stat"><b>16.2%</b>of agent contacts ask why income is asked</div>
+        <div class="stat"><b>2,862</b>variable or shift starters a month (34%)</div>
+        <div class="stat"><b>N-01, N-02</b>interview evidence for the friction</div>
+      </div>
+    </div>
+    <p class="foot">These are hypotheses drawn from a fictional brief, so plan survival rates, re-contact rates and funnel drop-off would be the first things to check.</p>
+  </div>
+</section>
+
+<!-- SLIDE 6 · RESEARCH -->
+<section id="s6" data-title="Slide 6 · Research">
+  <div class="inner">
+    <p class="eb">Slide 6 · Research</p>
+    <h2>Competitive analysis: what she does when the journey fails her</h2>
+    <div class="grid g21">
+      <div class="card">
+        <span class="lbl">Persona</span>
+        <p class="sm">A consumer on shift or variable income, with one or more open claims, trying to settle what she owes through the digital portal. Goal: to settle what she owes with a plan she can afford and keep, without making her situation worse.</p>
+        <span class="lbl" style="margin-top:12px">External tools (the workaround)</span>
+        <p class="sm">Confirmed outside channel: a phone call to an agent (N-04, N-08). Otherwise, her own memory and guesswork, since she has no calculator or explainer in the journey (N-01, N-02).</p>
+        <span class="lbl" style="margin-top:12px">The process (confirmed path)</span>
+        <ol class="steps sm">
+          <li>She opens the portal on a break, on her phone, and starts the instalment journey (N-01).</li>
+          <li>She reaches the income question and can’t tell whether it means this month or a normal month (N-01).</li>
+          <li>She closes the portal “to come back” (N-01) or chooses the shortest plan as the “right answer” without checking affordability (N-02).</li>
+          <li>Unsure about consequences, she phones an agent (N-04).</li>
+          <li>The agent asks her for the same details she already typed, because he can’t see them (N-08, T-205).</li>
+        </ol>
+        <span class="lbl" style="margin-top:12px">Core frustration</span>
+        <p class="sm" style="margin:0">The income question. It is where the journey asks for sensitive information without explaining which income is meant, why it’s needed or how it will be used (N-01, T-206). It is also where the fear of getting it wrong appears (N-06).</p>
+      </div>
+      <div class="card">
+        <span class="lbl">The evidence</span>
+        <div class="quote">“It asked for my income and I did not know if they meant this month or a normal month. I closed it and meant to come back.”<small>N-01 · confusion</small></div>
+        <div class="quote">“I picked the plan with the lowest number of months because it looked like the right answer. The amount was too high and I missed the second payment.”<small>N-02 · guessing</small></div>
+        <div class="quote">“I was scared to type the wrong number. What if they use it against me?”<small>N-06 · fear</small></div>
+        <div class="quote">“A person can tell me if this is going to cost me more.”<small>N-04 · calling</small></div>
+        <p class="xs mut" style="margin:6px 0 0">In the data: “why income is asked” is 16.2% of agent contacts and “what if I miss a payment” is 18.6%. Variable or shift earners miss payments at 22.5% versus 17.4% for fixed salary.</p>
+      </div>
+    </div>
+    <div style="margin-top:18px">
+      <span class="lbl">Journey map · key moments</span>
+      <div class="journey">
+        <div class="step"><span class="n">1 · Open</span><h4>Starts</h4><p class="xs mut" style="margin:0">She starts the instalment journey on her phone during a break.</p></div>
+        <div class="step"><span class="n">2 · Scan</span><h4>Reaches income</h4><p class="xs mut" style="margin:0">She reaches the income question.</p></div>
+        <div class="step"><span class="n">3 · Hesitate</span><h4>Can’t tell</h4><p class="xs mut" style="margin:0">She can’t tell which income is meant, why it’s asked or how it’s kept, and fears a wrong number (N-01, T-206, N-06).</p></div>
+        <div class="step misery"><span class="n">4 · Bounce · moment of misery</span><h4>Closes or guesses</h4><p class="xs" style="margin:0">She closes the portal to come back, or guesses a plan that is too high and misses the second payment (N-01, N-02).</p></div>
+        <div class="step fix"><span class="n">5 · Where we intervene</span><h4>Three plain statements</h4><p class="xs" style="margin:0">They sit beside the income field and answer her questions on the spot, so she enters her income and continues to plan options.</p></div>
+      </div>
+      <p class="xs mut" style="margin:10px 0 0;font-family:var(--mono)">Journey map source image: thejourney.png</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 7 · BLUEPRINT -->
+<section id="s7" data-title="Slide 7 · Blueprint">
+  <div class="inner">
+    <p class="eb">Slide 7 · Blueprint</p>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
+      <h2 style="margin-bottom:14px">Roadmap and PRD</h2>
+      <span class="chip" style="margin-bottom:14px"><b>Prototype</b><a href="https://github.com/eliwox/pm-final-project/blob/main/04-roadmap/prototype.html">04-roadmap/prototype.html</a></span>
+    </div>
+    <p class="xs mut" style="margin:-4px 0 12px">Team (assumed): one squad of 7 (5 engineers, 1 designer, 1 PM). Scored on Effort vs Value against the anchors: 60-day missed-payment rate (22.5% baseline) and agreement rate (41.6% guardrail).</p>
+    <div class="cols">
+      <div class="col now">
+        <h3>Now</h3><p class="sub">This sprint</p>
+        <article class="rc"><div class="rc-h"><span><span class="id">B1</span><b>Income explainer</b></span><span class="bdg q-qw">Quick Win</span></div><div class="ve">Value 4 · Effort 1</div><p>It answers the moment of misery directly (N-01, T-206, N-06) and addresses the 16.2% of agent contacts asking why income is asked, but it clarifies rather than changes plan choice, so it is not a 5.</p></article>
+      </div>
+      <div class="col next">
+        <h3>Next</h3><p class="sub">The following sprints</p>
+        <article class="rc"><div class="rc-h"><span><span class="id">B2</span><b>Affordability check before plans</b></span><span class="bdg q-mp">Major Project</span></div><div class="ve">Value 5 · Effort 3</div><p>It is the only feature that acts where N-02 failed and where the 22.5% missed-payment rate is decided, so a rules-based version should fit the quarter, but it must be watched against the 41.6% agreement guardrail.</p></article>
+        <article class="rc"><div class="rc-h"><span><span class="id">B3</span><b>One plan for several claims</b></span><span class="bdg q-mp">Major Project</span></div><div class="ve">Value 4 · Effort 5</div><p>The segment signal is strong (agreement 52.1% at one claim vs 27.6% at three or more), but it mainly lifts agreement, not the 22.5% metric, and it will not fit one quarter.</p></article>
+      </div>
+      <div class="col later">
+        <h3>Later</h3><p class="sub">Backlog</p>
+        <article class="rc"><div class="rc-h"><span><span class="id">B4</span><b>Mobile upload fix or skip</b></span><span class="bdg q-fi">Fill-In</span></div><div class="ve">Value 3 · Effort 2</div><p>It protects the guardrail (853 journeys with a missing document, mobile agreement 43.8% vs 54.0%) but does nothing for missed payments.</p></article>
+        <article class="rc"><div class="rc-h"><span><span class="id">B5</span><b>Pay-day payment date</b></span><span class="bdg q-fi">Fill-In</span></div><div class="ve">Value 3 · Effort 2</div><p>No interview or ticket mentions pay day, and variable earners may not have a fixed one, so its effect on the 22.5% is only a hypothesis.</p></article>
+        <article class="rc"><div class="rc-h"><span><span class="id">B6</span><b>Agent handoff summary</b></span><span class="bdg q-fi">Fill-In</span></div><div class="ve">Value 2 · Effort 2</div><p>It fixes Daniel’s repeat questions (N-08, T-205), not Mara’s friction, and moves neither the primary metric nor the guardrail.</p></article>
+        <article class="rc"><div class="rc-h"><span><span class="id">B8</span><b>Shortest plan first</b></span><span class="bdg q-fi">Fill-In</span></div><div class="ve">Value 1 · Effort 1</div><p>Missed payments rose from 15.6% to 18.4% when Month 4 put the 6-month plan first, and N-02 shows people pick the first option, so this likely makes the primary metric worse.</p></article>
+      </div>
+    </div>
+    <div class="grid g21" style="margin-top:6px">
+      <div class="card hero">
+        <span class="tag">PRD highlights</span>
+        <div class="grid g2" style="gap:14px">
+          <div>
+            <h3>The “Now” feature</h3>
+            <p class="sm">Income explainer: three plain statements beside the income field. Which income to enter, why it’s asked, and how the answer is used and kept.</p>
+            <h3 style="margin-top:10px">Prototype learning</h3>
+            <p class="sm" style="margin:0">The first prototype came out entirely in German; it needed to be in English, and the version in the repo is.</p>
+          </div>
+          <div>
+            <h3>Finalized Must-Haves</h3>
+            <ol class="steps sm must">
+              <li>Plain statement of which income to enter, at the point of entry.</li>
+              <li>One-sentence reason the income is asked.</li>
+              <li>Inline placement, in German, readable on mobile, with no navigation away from the question.</li>
+            </ol>
+            <h3 style="margin-top:10px">Demoted from Must</h3>
+            <p class="sm" style="margin:0">Plain statement of how the answer is used and how long it is kept. It didn’t make sense.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card cut">
+        <span class="tag" style="border-color:var(--pk);color:var(--pk)">✂ Cut list</span>
+        <article class="rc" style="margin:0;background:none;border:0;padding:0"><div class="rc-h"><span><span class="id">B7</span><b>Chat on every page</b></span><span class="bdg q-ts">Time Sinker</span></div><div class="ve">Value 2 · Effort 3</div><p>Chat users miss more payments (21.6% vs 18.3%) and chat confirms plans without showing consequences (T-208), so scaling it risks the primary metric.</p></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 8 · VALIDATION -->
+<section id="s8" data-title="Slide 8 · Validation">
+  <div class="inner">
+    <p class="eb">Slide 8 · Validation</p>
+    <h2>Experiment plan</h2>
+    <div class="callout" style="margin-bottom:14px">
+      <span class="lbl" style="color:var(--cy)">Hypothesis</span>
+      <p class="big" style="margin:0">I believe that the inline income explainer will result in fewer plans that break within 60 days, as measured by a 4-point reduction (22.5% to 18.5%) in the 60-day missed-payment rate for variable or shift agreements, with a read at about 4.7 months. We will protect agreement rate (baseline 41.6%) throughout the test.</p>
+    </div>
+    <div class="grid g2" style="margin-bottom:14px">
+      <div class="card">
+        <span class="lbl" style="color:var(--cy)">Control (A)</span>
+        <p class="sm" style="margin:0">The current income step: no statement of which income is meant (N-01), why it’s asked or how it’s kept (T-206), or how data is used (N-06).</p>
+      </div>
+      <div class="card hero">
+        <span class="lbl">Variant (B) · one change</span>
+        <p class="sm" style="margin:0">The same step plus three short statements beside the existing income field, each 25 words or fewer: which income to enter, why it’s asked, and how the answer is used and kept. Nothing else changes.</p>
+      </div>
+    </div>
+    <div class="grid" style="grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:14px">
+      <div class="metric"><b>22.5%</b><span>Primary metric baseline: 60-day missed-payment rate, variable or shift agreements</span></div>
+      <div class="metric"><b>4 pts</b><span>MDE: 22.5% down to 18.5%</span></div>
+      <div class="metric"><b>1,598</b><span>Agreements per arm · 50/50 · randomized by consumer</span></div>
+      <div class="metric"><b>≈ 4.7 mo</b><span>2.7 months enrolment plus 60-day follow-up</span></div>
+      <div class="metric"><b>p &lt; 0.05</b><span>Two-sided, 80% power</span></div>
+    </div>
+    <div class="grid g2">
+      <div class="card">
+        <span class="lbl">Guardrail</span>
+        <p class="sm" style="margin:0 0 8px"><b>Agreement rate</b>, baseline 41.6%. Tripwire at 40.6% (1 point below control), checked weekly.</p>
+        <span class="lbl" style="margin-top:10px">Isolation check · held constant</span>
+        <p class="xs mut" style="margin:0">App version and release; eligibility, outreach and entry channels; the income field and its validation; the affordability questions and income document step (including T-201); the plan screen, its ordering and all amounts; chat, agent screens and reminders (T-207); the segment definition; no other test running on the plan screen or chat.</p>
+      </div>
+      <div class="card">
+        <span class="lbl">Shipping criteria</span>
+        <div class="rules">
+          <div class="rule" style="--c:var(--tl)"><b>Ship</b><span>Missed-payment rate is 4.0 points or more lower (to 18.5% or better), p &lt; 0.05, and agreement rate is no more than 1.0 point below control.</span></div>
+          <div class="rule" style="--c:var(--or)"><b>Hold</b><span>Agreement rate is 1.0 point or more below control at any weekly check, whatever the primary result.</span></div>
+          <div class="rule" style="--c:var(--bl)"><b>Iterate</b><span>A significant improvement of 1.0 to 3.9 points. Pair the explainer with the affordability check and retest.</span></div>
+          <div class="rule" style="--c:var(--vi)"><b>Inconclusive</b><span>Not significant and under 4 points. If a diagnostic hits its pre-set threshold, iterate; if none does, drop it.</span></div>
+          <div class="rule" style="--c:var(--pk)"><b>Stop</b><span>Missed payments are 1.0 point or more higher in the variant, or agreement rate is clearly lower with no offsetting gain.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 9 · LAUNCH -->
+<section id="s9" data-title="Slide 9 · Launch">
+  <div class="inner">
+    <p class="eb">Slide 9 · Launch</p>
+    <h2>Go-to-market and success dashboard</h2>
+    <div class="grid g2" style="margin-bottom:14px">
+      <div class="card hero">
+        <span class="lbl">GTM strategy</span>
+        <div class="pills">
+          <span class="pill" style="--c:var(--or)">Goal · <b>Conversion</b></span>
+          <span class="pill" style="--c:var(--cy)">Tier · <b>S, Minimal</b></span>
+        </div>
+        <p class="xs" style="margin:0 0 8px"><b>Why conversion:</b> consumers already reach the portal (8,360 starters a month), so awareness isn’t the gap. The feature exists to move a business metric: fewer plans that break within 60 days, which is 22.5% for variable or shift earners against 17.4% for fixed salary.</p>
+        <p class="xs" style="margin:0 0 8px"><b>Audience:</b> primary, consumers on shift or variable income with one or more open claims who start an instalment journey in the German portal, mostly on mobile (2,862 starters a month, 34% of all starters; about 1,191 agreements). Secondary, collection agents in the pilot team, who field the “why is income asked?” contacts (16.2% of agent contacts).</p>
+        <p class="xs mut" style="margin:0"><b style="color:var(--fg)">Why tier S:</b> the feature is copy inside an existing step, so the audience is already in the portal and needs no announcement. The real risk is agents who keep re-asking the same questions, so the only investment is internal enablement. A louder launch could also draw attention to data use, which N-06 shows already worries consumers.</p>
+      </div>
+      <div class="card">
+        <span class="lbl">Channels</span>
+        <div class="pills">
+          <span class="pill" style="--c:var(--tl)"><b>Owned</b> · The income step</span>
+          <span class="pill" style="--c:var(--tl)"><b>Owned</b> · Collection agents</span>
+          <span class="pill" style="--c:var(--tl)"><b>Owned</b> · Client account managers</span>
+        </div>
+        <p class="xs" style="margin:0 0 6px"><b>The income step itself:</b> the three plain statements shown beside the income field, where the misery happens. It reaches every variable or shift starter, 78% of them on mobile.</p>
+        <p class="xs" style="margin:0 0 6px"><b>Collection agents:</b> a briefing and one-pager so they point callers to the explainer instead of re-explaining.</p>
+        <p class="xs" style="margin:0 0 8px"><b>Client account managers:</b> a short note for client reporting, since clients care about complaints and broken plans (N-10). No earned or paid channel: paid promotion of collection outreach to financially stretched consumers would be inappropriate and unneeded.</p>
+        <span class="lbl">Enablement and assets</span>
+        <p class="xs mut" style="margin:0">Compliance-approved German copy deck, including the retention period. Agent one-pager and FAQ. A client account manager note. A check that the chat assistant’s answers about income don’t contradict the explainer wording. Support briefed, no extra budget.</p>
+      </div>
+    </div>
+    <span class="lbl">Success metrics dashboard</span>
+    <div class="grid g3" style="margin-bottom:12px">
+      <div class="metric"><span>60-day missed-payment rate, variable or shift agreements</span><b>22.5% → ≤ 18.5%</b></div>
+      <div class="metric"><span>Share of agent contacts about “why income is asked”</span><b>16.2% → target TBD</b><span class="xs">Set before launch (12% or lower proposed, not from the data)</span></div>
+      <div class="metric"><span>Guardrail · segment agreement rate</span><b>41.6% (floor 40.6%)</b><span class="xs">No more than 1 point below control</span></div>
+    </div>
+    <div class="grid g2" style="margin-bottom:12px">
+      <div class="bad">
+        <span class="lbl" style="color:var(--pk)">Bad signal to watch for</span>
+        <p class="sm" style="margin:0">Agreement rate falls to 40.6% or lower while missed payments improve. The explainer may be deterring people instead of helping them.</p>
+      </div>
+      <div class="card">
+        <span class="lbl">Likely post-launch decision</span>
+        <p class="sm" style="margin:0"><b>Iterate.</b> A copy-only change will probably land under the 4-point target (power is about 55% at 3 points and 28% at 2), so a significant 1 to 3.9 point improvement triggers pairing with the affordability check and a retest. Ship if the drop is 4 points or more, p &lt; 0.05, and the guardrail holds.</p>
+      </div>
+    </div>
+    <span class="lbl">Timeline</span>
+    <div class="tl">
+      <div style="--c:var(--cy);flex:1.2"><b>Weeks -2 to 0 · Prep</b>Compliance sign-off, segment assignment confirmed, agent one-pager drafted</div>
+      <div style="--c:var(--or);flex:1.6"><b>Weeks 1 to 12 · Beta</b>A/B enrolment (about 2.7 months), weekly guardrail checks</div>
+      <div style="--c:var(--bl);flex:1.4"><b>Weeks 13 to 21 · Follow-up</b>60-day follow-up for the last people enrolled; read at about week 21</div>
+      <div style="--c:var(--tl);flex:1.3"><b>Week 22 · Launch moment</b>Ship decision, roll out to 100% of the segment, agent briefing live, client note sent</div>
+      <div style="--c:var(--vi);flex:1.2"><b>Week 23+ · Post-launch</b>Monitor guardrail and diagnostics, review at about 90 days</div>
+    </div>
+    <p class="xs mut" style="margin:12px 0 0"><b style="color:var(--fg)">Ownership and budget:</b> PM owns the plan and post-launch metrics. Compliance partner approves the copy and retention statement. UX writer owns German copy. Designer owns layout at 375 px. Front-end engineer owns the build and the randomization flag. Analyst owns the experiment read. Agent team lead owns the briefing. Client account manager owns the client note. No paid media budget. Extra cost: native German copy review and a copy test with about 8 variable-income consumers (amount to be confirmed). Asset gap: the approved retention period and the German copy deck.</p>
+  </div>
+</section>
+
+<!-- SLIDE 10 · STORY -->
+<section id="s10" data-title="Slide 10 · Story">
+  <div class="inner">
+    <p class="eb">Slide 10 · Story</p>
+    <h2>Individual insights</h2>
+    <div class="grid g2">
+      <div class="card hero">
+        <span class="lbl">Friction points and the aha moment</span>
+        <p>The hardest part was keeping the evidence honest. Several ideas I liked had no support in the interviews, such as the pay-day date, and the shortest-plan-first feature looked cheap but the data pointed the other way.</p>
+        <p>The second surprise was the experiment math. A 2-point improvement needed 6,623 agreements per arm, which meant about 11 months of enrolment, so I had to choose a larger effect to detect and accept a less decisive test.</p>
+        <p style="margin:0"><b style="color:var(--or)">The aha moment</b> was seeing that the biggest drop-off wasn’t where I had looked first: only 22% of portal entrants start a journey at all.</p>
+      </div>
+      <div class="card">
+        <span class="lbl">Key takeaways and what I’d do next</span>
+        <p class="sm" style="margin-bottom:6px"><b>Takeaways</b></p>
+        <ol class="steps sm">
+          <li>A rising self-service rate can hide failing plans, because a plan counts as resolved the day it is created.</li>
+          <li>The explainer alone probably won’t deliver a 4-point drop, so it should be paired with the affordability check.</li>
+          <li>A test needs a realistic sample size before it needs a clever feature.</li>
+        </ol>
+        <p class="sm" style="margin:12px 0 6px"><b>Next</b></p>
+        <p class="sm" style="margin:0">Get compliance sign-off on the copy, confirm how the variable-income segment is assigned, pre-set thresholds for the secondary metrics, and start the A/B test. In parallel, start discovery on combining claims, which has the largest segment gap (agreement 52.1% at one claim vs 27.6% at three or more).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THANK YOU -->
+<section id="submit" data-title="Thank you">
+  <div class="inner">
+    <p class="eb">Thank you</p>
+    <h1 style="font-size:clamp(40px,6vw,80px)">Thank <span>you</span></h1>
+    <div class="chips">
+      <span class="chip"><b>Repo</b><a href="https://github.com/eliwox/pm-final-project">https://github.com/eliwox/pm-final-project</a></span>
+      <span class="chip"><b>Cohort</b>Riverty Cohort 2</span>
+      <span class="chip"><b>Presented by</b>Elias Woxmark</span>
+    </div>
+    <div style="margin:22px 0 18px"><span class="submit">Submit to the learning platform</span></div>
+    <p class="foot">Riverty BU Collection · A Fair Way Forward. Sample data, illustrative, not Riverty research. All people, numbers and events are fictional.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  var secs=[].slice.call(document.querySelectorAll('section'));
+  var bar=document.getElementById('bar');
+  var nav=document.getElementById('dots');
+  function cur(){
+    var y=window.scrollY+window.innerHeight*0.35,idx=0;
+    secs.forEach(function(s,i){if(s.offsetTop<=y)idx=i;});
+    return idx;
+  }
+  function go(i){
+    i=Math.max(0,Math.min(secs.length-1,i));
+    secs[i].scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  secs.forEach(function(s,i){
+    var a=document.createElement('a');
+    a.href='#'+s.id;
+    a.setAttribute('aria-label',s.getAttribute('data-title')||('Slide '+(i+1)));
+    a.title=s.getAttribute('data-title')||('Slide '+(i+1));
+    a.addEventListener('click',function(e){e.preventDefault();go(i);});
+    nav.appendChild(a);
+  });
+  function upd(){
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    bar.style.width=(h>0?(window.scrollY/h)*100:0)+'%';
+    var c=cur();
+    [].forEach.call(nav.children,function(a,i){a.classList.toggle('on',i===c);});
+  }
+  window.addEventListener('scroll',upd,{passive:true});
+  window.addEventListener('resize',upd);
+  document.addEventListener('keydown',function(e){
+    if(e.metaKey||e.ctrlKey||e.altKey)return;
+    var k=e.key;
+    if(k==='ArrowDown'||k==='PageDown'||(k===' '&&!e.shiftKey)){e.preventDefault();go(cur()+1);}
+    else if(k==='ArrowUp'||k==='PageUp'||(k===' '&&e.shiftKey)){e.preventDefault();go(cur()-1);}
+    else if(k==='Home'){e.preventDefault();go(0);}
+    else if(k==='End'){e.preventDefault();go(secs.length-1);}
+    else if(k==='Escape'){go(0);}
+  });
+  upd();
+})();
+</script>
+</body>
+</html>
