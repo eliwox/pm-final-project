@@ -3,11 +3,11 @@
 | Field | Value |
 |---|---|
 | Feature | Inline income explainer on the income step of the instalment journey. |
-| Goal | _(not filled in)_ |
+| Goal | Conversion |
 | Launch tier | S, Minimal |
 
 ## Goal & Audience
-- **Goal:** _(not filled in)_, Consumers already reach the portal (8,360 starters a month), so awareness isn’t the gap. The feature exists to move a business metric: fewer plans that break within 60 days, which is 22.5% for variable or shift earners against 17.4% for fixed salary.
+- **Goal:** Conversion, Consumers already reach the portal (8,360 starters a month), so awareness isn’t the gap. The feature exists to move a business metric: fewer plans that break within 60 days, which is 22.5% for variable or shift earners against 17.4% for fixed salary.
 - **Target audience:** Primary: consumers on shift or variable income with one or more open claims who start an instalment journey in the German portal, mostly on mobile (2,862 starters a month, 34% of all starters; about 1,191 agreements). Secondary: collection agents in the pilot team, who field the “why is income asked?” contacts (16.2% of agent contacts).
 
 ## Launch Tier
